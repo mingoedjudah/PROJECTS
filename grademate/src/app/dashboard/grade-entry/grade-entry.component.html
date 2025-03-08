@@ -1,0 +1,35 @@
+<div class="grade-entry-content">
+  <div class="dropdown-container">
+    <mat-form-field appearance="fill" class="subject-dropdown">
+      <mat-label>Subjects</mat-label>
+      <mat-select [(value)]="selectedSubject" (selectionChange)="onSubjectChange($event)">
+        <mat-option *ngFor="let subject of subjects" [value]="subject.id">{{ subject.subject_name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="assessment-dropdown">
+      <mat-label>Select Assessment Type</mat-label>
+      <mat-select [(value)]="selectedTable" (selectionChange)="onTableChange($event)">
+        <mat-option *ngFor="let assessment of assessmentTypes" [value]="assessment.value">{{ assessment.label }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <ng-container [ngSwitch]="selectedTable">
+    <div *ngSwitchCase="'activity'">
+      <app-activity [subjectId]="selectedSubject"></app-activity>
+    </div>
+    <div *ngSwitchCase="'exercise'">
+      <app-exercise [subjectId]="selectedSubject"></app-exercise>
+    </div>
+    <div *ngSwitchCase="'quiz'">
+      <app-quiz [subjectId]="selectedSubject"></app-quiz>
+    </div>
+    <div *ngSwitchCase="'exam'">
+      <app-exam [subjectId]="selectedSubject"></app-exam>
+    </div>
+    <div *ngSwitchCase="'project'">
+      <app-project [subjectId]="selectedSubject"></app-project>
+    </div>
+  </ng-container>
+</div>

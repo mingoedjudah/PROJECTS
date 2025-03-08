@@ -1,0 +1,144 @@
+:host {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 160vh;
+  background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%), 
+    url('/assets/layered.svg');
+  background-size: cover;
+  background-blend-mode: overlay;
+  animation: gradientShift 10s infinite alternate;
+  color: black;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%), 
+      url('/assets/layered.svg');
+  }
+  50% {
+    background: linear-gradient(135deg, #95bafe 0%, #cdffd8 100%), 
+      url('/assets/layered.svg');
+  }
+}
+
+.form-group h2 {
+  font-size: 1.7rem;
+  text-align: center;
+  color: #333;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.input-container input,
+.input-container select {
+  width: 90%;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.input-container label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  transition: all 0.3s;
+  padding: 0 0.25rem;
+}
+
+.input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label,
+.input-container select:focus + label,
+.input-container select:not([value=""]) + label {
+  top: -0.6rem;
+  left: 1rem;
+  font-size: 0.8rem;
+  color: #3f51b5;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+button.submit-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #1163ef, #0bc398);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  animation: glowButton 1.5s infinite alternate;
+}
+
+.submit-button:disabled {
+  background-color: #ccc;
+}
+
+.additional-options {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.additional-options a {
+  color: #007BFF;
+  text-decoration: none;
+  display: block;
+  margin-top: 10px;
+}
+
+.additional-options a:hover {
+  text-decoration: underline;
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

@@ -1,0 +1,222 @@
+<div class="header">
+  <div class="logo">
+    <img src="assets/logo_text.png" alt="GRADEMATE Logo">
+  </div>
+  <div class="university-name">{{ profile.school }}</div>
+  <div class="user-info">
+    <img [src]="profile.profilePic ? profile.profilePic : 'assets/default.jpg'" alt="Profile Image" id="header-profile-pic">
+    <span>{{ profile.username }}</span>
+  </div>
+</div>
+<div class="container">
+  <div class="sidebar">
+    <div class="dashboard-title">DASHBOARD</div>
+    <div class="menu-item" (click)="selectMenu('courses')" [ngClass]="{ 'active': selectedMenu === 'courses' }">
+      <i class='bx bxs-book-open'></i> Home
+    </div>
+    <div class="menu-item" (click)="selectMenu('assessment')" [ngClass]="{ 'active': selectedMenu === 'assessment' }">
+      <i class='bx bxs-book-alt'></i> Assessment
+    </div>
+    <div class="menu-item" (click)="selectMenu('input-grades')" [ngClass]="{ 'active': selectedMenu === 'input-grades' }">
+      <i class='bx bxs-edit'></i> Grade Entry
+    </div>
+    <div class="menu-item" (click)="selectMenu('account')" [ngClass]="{ 'active': selectedMenu === 'account' }">
+      <i class='bx bxs-user'></i> Account
+    </div>
+    <div class="bottom-items">
+      <div class="toggle-container">
+        <input type="checkbox" id="toggle" class="toggle-checkbox" (click)="toggleDarkMode()">
+        <label for="toggle" class="toggle-label">
+          <i class='bx bxs-sun sun-icon'></i>
+          <i class='bx bxs-moon moon-icon'></i>
+        </label>
+        </div>
+      <div class="menu-items" (click)="selectMenu('logout')">
+        <i class='bx bxs-exit'></i> Logout
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <ng-container *ngIf="selectedMenu === 'logout'">
+    <div *ngIf="isLogoutModalOpen" class="modal-logout">
+      <div class="modal-content">
+        <span class="close cursor-pointer" (click)="closeLogoutModal()">&times;</span>
+        <p>Are you sure you want to Logout?</p>
+        <button class="confirm-logout-button" (click)="confirmLogout()">
+          Yes</button>
+        <button class="cancel-logout-button" (click)="closeLogoutModal()">
+          No</button>
+      </div>
+    </div>
+    </ng-container>
+    <div class="modal" *ngIf="showAddModal">
+      <div class="modal-content">
+        <h2>Add Subject</h2>
+        <input type="text" [(ngModel)]="newSubjectName" placeholder="Enter subject name">
+        <div class="modal-buttons">
+          <button (click)="addSubject()">Save</button>
+          <button (click)="closeAddModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal" *ngIf="showEditModal">
+      <div class="modal-content">
+        <h2>Edit Subject</h2>
+        <input type="text" [(ngModel)]="selectedSubject.subject_name" placeholder="Enter subject name">
+        <div class="modal-buttons">
+          <button (click)="saveEditedSubject()">Save</button>
+          <button (click)="closeEditModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="selectedMenu === 'courses'">
+      <div class="table-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <ng-container *ngIf="subjects.length > 0">
+                <th class="checkbox-column">
+                  <input type="checkbox" (change)="toggleAllSelection($event)"> Select All
+                </th>
+              </ng-container>
+              <th class="subject-header">
+                Subject Names
+                <div class="action-buttons">
+                  <button (click)="toggleSelection()">Select</button>
+                  <button (click)="deleteSelected()">Delete</button>
+                  <button (click)="openAddModal()">Add Subject</button>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let subject of subjects; let i = index">
+              <td class="checkbox-column" *ngIf="subjects.length > 0">
+                <input type="checkbox" [(ngModel)]="selectedSubjects[i]">
+              </td>
+              <td class="edit">
+                <span>{{ subject.subject_name }}</span>
+                <button (click)="openEditModalSubject(subject)">Edit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+
+  <div class="content">
+    <div class="assessment-section">
+      <div *ngIf="selectedMenu === 'assessment'">
+        <div class="dropdown-container">
+          <label for="subjectSelect">Select Subject:</label>
+          <select id="subjectSelect" [(ngModel)]="selectedSubjectId" (change)="loadAssessments()">
+            <option *ngFor="let subject of subjects" [value]="subject.id">{{ subject.subject_name }}</option>
+          </select>
+        </div>
+        <div class="assessment-table" *ngIf="assessmentWeights">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Assessment Type</th>
+                <th>Weight (%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Activity</td>
+                <td><input type="number" [(ngModel)]="assessmentWeights.activity_weight"></td>
+              </tr>
+              <tr>
+                <td>Quiz</td>
+                <td><input type="number" [(ngModel)]="assessmentWeights.quiz_weight"></td>
+              </tr>
+              <tr>
+                <td>Exercise</td>
+                <td><input type="number" [(ngModel)]="assessmentWeights.exercise_weight"></td>
+              </tr>
+              <tr>
+                <td>Exam</td>
+                <td><input type="number" [(ngModel)]="assessmentWeights.exam_weight"></td>
+              </tr>
+              <tr>
+                <td>Project</td>
+                <td><input type="number" [(ngModel)]="assessmentWeights.project_weight"></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="action-buttons">
+            <button (click)="saveAssessmentWeights()">Save Weights</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div *ngIf="selectedMenu === 'account'">
+  <div class="account-info">
+    <div class="card">
+      <div class="left-container">
+        <div class="profile-image-container">
+          <img [src]="profile.profilePic ? profile.profilePic : 'assets/default.jpg'" alt="Profile Image" id="profileImage">
+          <button id="editImageButton" (click)="openAvatarModal()">Edit Profile Image</button>
+        </div>
+        
+        <!-- Avatar Selection Modal -->
+        <div class="modal" *ngIf="showAvatarModal">
+          <div class="modal-content">
+            <h2>Select an Avatar</h2>
+            <div class="avatar-options">
+              <img src="assets/avatar1.png" (click)="selectAvatar('assets/avatar1.png')">
+              <img src="assets/avatar2.png" (click)="selectAvatar('assets/avatar2.png')">
+              <img src="assets/avatar3.png" (click)="selectAvatar('assets/avatar3.png')">
+              <img src="assets/avatar4.png" (click)="selectAvatar('assets/avatar4.png')">
+              <img src="assets/avatar5.png" (click)="selectAvatar('assets/avatar5.png')">
+              <img src="assets/avatar6.png" (click)="selectAvatar('assets/avatar6.png')">
+              <img [src]="profile.profilePic ? profile.profilePic : 'assets/default.jpg'" alt="Profile Image" id="profileImage">
+              <input type="file" id="uploadImage" style="display: none;" accept="image/*" (change)="onImageSelected($event)">
+              <button id="editImageButton" (click)="triggerFileInput()">Upload Image</button>
+              <button *ngIf="profile.profilePic" (click)="removeImage()">Remove Profile Picture🗑️</button> 
+            </div>
+            <div class="modal-buttons">
+              <button (click)="closeAvatarModal()">Done</button>
+            </div>
+          </div>
+        </div>
+        <h2 class="gradienttext">{{ profile.name }}</h2>
+        <p>{{ profile.username }}</p>
+      </div>
+      <div class="right-container">
+        <h2 class="gradienttext">ACCOUNT DETAILS</h2>
+        <p class="email">{{ profile.email }}</p>
+        <div class="school-container">
+          <span class="school">School</span>
+          <span class="course">{{ profile.school }}</span>
+        </div>
+        <div class="user-information">
+          <div class="other-info">
+            <span class="gender">{{ profile.gender }}</span>
+            <span class="label">gender</span>
+          </div>
+          <div class="other-info">
+            <span class="birthday">{{ profile.birthday | date:'longDate' }}</span>
+            <span class="label">birthday</span>
+          </div>
+          <div class="other-info">
+            <span class="age">{{ profile.age }}</span>
+            <span class="label">age</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="entry">
+  <div class="assessment-entry">
+    <div *ngIf="selectedMenu === 'input-grades'">
+      <app-grade-entry></app-grade-entry>
+  </div>
+</div>

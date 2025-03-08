@@ -1,0 +1,144 @@
+<div class="container">
+    <h1 class="faq-title">Frequently Asked Questions</h1>
+    <p class="text">Do you need some help with something or</p>
+    <p class="text"> do you have questions on some features?</p>
+    
+    <div class="faq-item" (click)="toggleFaq(0)">
+      <div class="faq-question">
+        What is Grademate?
+        <span class="faq-toggle">{{ faqs[0].open ? '-' : '+' }}</span>
+      </div>
+      <div class="faq-answer" 
+      [style.display]="faqs[0].open ? 'block' : 'none'">
+        Grademate is a student-friendly tool designed to help 
+        students manage their academic journey. It offers features like grade
+         organization by subject or course, flexible input options 
+         for different types of assessments.
+      </div>
+    </div>
+    
+    <div class="faq-item" (click)="toggleFaq(1)">
+      <div class="faq-question">
+        How does Grademate organize grades?
+        <span class="faq-toggle">{{ faqs[1].open ? '-' : '+' }}</span>
+      </div>
+      <div class="faq-answer" [style.display]="faqs[1].open ? 'block' : 'none'">
+        Grademate organizes grades by subject. 
+        It allows students to input grades for various types 
+        of assessments such as quizzes, activities, exams, and projects,
+        and set customized weights for each type based on their 
+        relative significance.
+      </div>
+    </div>
+    
+    <div class="faq-item" (click)="toggleFaq(2)">
+      <div class="faq-question">
+        What types of assessments can I track with Grademate?
+        <span class="faq-toggle">{{ faqs[2].open ? '-' : '+' }}</span>
+      </div>
+      <div class="faq-answer" 
+      [style.display]="faqs[2].open ? 'block' : 'none'">
+        You can track various types of assessments including 
+        quizzes, activities, exams, projects. Grademate
+         provides flexible input options to accommodate
+        different assessment types.
+      </div>
+    </div>
+    
+    <div class="faq-item" (click)="toggleFaq(3)">
+      <div class="faq-question">
+        How do I set customized weights for different types of assessments?
+        <span class="faq-toggle">{{ faqs[3].open ? '-' : '+' }}</span>
+      </div>
+      <div class="faq-answer" 
+      [style.display]="faqs[3].open ? 'block' : 'none'">
+        Grademate allows you to set customized weights 
+        for different types of assessments by assigning a 
+        percentage to each type based on its significance. 
+        This ensures that your overall grade reflects the 
+        relative importance of each assessment type.
+      </div>
+    </div>
+    
+    <div class="faq-item" (click)="toggleFaq(4)">
+      <div class="faq-question">
+        How does Grademate calculate my overall grade?
+        <span class="faq-toggle">{{ faqs[4].open ? '-' : '+' }}</span>
+      </div>
+      <div class="faq-answer"
+       [style.display]="faqs[4].open ? 'block' : 'none'">
+        Grademate calculates your overall grade based 
+        on the weighted assessments you have entered. 
+        It uses the customized weights you set for each
+         type of assessment to provide an accurate overall grade.
+      </div>
+    </div>
+    
+    <div class="faq-item" (click)="toggleFaq(5)">
+      <div class="faq-question">
+        Can I track my academic progress with Grademate?
+        <span class="faq-toggle">{{ faqs[5].open ? '-' : '+' }}</span>
+      </div>
+      <div class="faq-answer" 
+      [style.display]="faqs[5].open ? 'block' : 'none'">
+        Yes, Grademate emphasizes progress tracking. It 
+        provides visual aids and goal-setting features 
+        to help you monitor your academic progress over time.
+      </div>
+    </div>
+ 
+    <div class="faq-item" (click)="toggleFaq(7)">
+      <div class="faq-question">
+        Can I set goals within Grademate?
+        <span class="faq-toggle">{{ faqs[7].open ? '-' : '+' }}</span>
+      </div>
+      <div class="faq-answer" 
+      [style.display]="faqs[7].open ? 'block' : 'none'">
+        Yes, Grademate allows you to set academic goals.
+         These goals help you stay focused and motivated
+          throughout your academic journey.
+      </div>
+    </div>
+    
+    <div class="faq-item" (click)="toggleFaq(8)">
+      <div class="faq-question">
+        Is Grademate easy to use?
+        <span class="faq-toggle">{{ faqs[8].open ? '-' : '+' }}</span>
+      </div>
+      <div class="faq-answer"
+       [style.display]="faqs[8].open ? 'block' : 'none'">
+        Yes, Grademate is designed to be user-friendly.
+         Its intuitive interface and flexible input options
+          make it easy for students to manage their grades 
+          and track their progress.
+      </div>
+    </div>
+    
+    <div class="faq-item" (click)="toggleFaq(9)">
+      <div class="faq-question">
+        How do I get started with Grademate?
+        <span class="faq-toggle">{{ faqs[9].open ? '-' : '+' }}</span>
+      </div>
+      <div class="faq-answer" 
+      [style.display]="faqs[9].open ? 'block' : 'none'">
+        To get started with Grademate, simply sign up or 
+        log in to the platform. Once you’re in, you can 
+        start entering your courses, assessments, and grades, 
+        and begin setting your customized weights and goals.
+      </div>
+    </div>
+    
+    <div class="faq-item" (click)="toggleFaq(11)">
+      <div class="faq-question">
+        Who can I contact for support with Grademate?
+        <span class="faq-toggle">{{ faqs[11].open ? '-' : '+' }}</span>
+      </div>
+      <div class="faq-answer" 
+      [style.display]="faqs[11].open ? 'block' : 'none'">
+        If you need any support with Grademate, you can contact
+         our customer support team through the support section
+          on our website or via email. We’re here to help you 
+          with any questions or issues you might have.
+      </div>
+    </div>
+  </div>

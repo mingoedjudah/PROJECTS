@@ -1,0 +1,209 @@
+<div class="container">
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <h2>Create your account</h2>
+      <div class="input-container">
+        <input id="first_name" formControlName="first_name" class="form-control" placeholder=" ">
+        <label for="first_name">First Name</label>
+      </div>
+      <div class="error-message">
+        @if (signupForm.get('first_name')?.invalid && (signupForm.get('first_name')?.dirty || signupForm.get('first_name')?.touched)) {
+          @if (signupForm.get('first_name')?.errors?.['required']) {
+            <div>First Name is required</div>
+          }
+          @if (signupForm.get('first_name')?.errors?.['invalidCharacters']) {
+            <div>First Name cannot include numbers or symbols</div>
+          }
+          @if (signupForm.get('first_name')?.errors?.['invalidPunctuation']) {
+            <div>First Name cannot include invalid punctuation marks</div>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-container">
+        <input id="middle_name" formControlName="middle_name" class="form-control" placeholder=" ">
+        <label for="middle_name">Middle Name</label>
+      </div>
+      <div class="error-message">
+        @if (signupForm.get('middle_name')?.invalid && (signupForm.get('middle_name')?.dirty || signupForm.get('middle_name')?.touched)) {
+          @if (signupForm.get('middle_name')?.errors?.['required']) {
+            <div>Middle Name is required</div>
+          }
+          @if (signupForm.get('middle_name')?.errors?.['invalidCharacters']) {
+            <div>Middle Name cannot include numbers or symbols</div>
+          }
+          @if (signupForm.get('middle_name')?.errors?.['invalidPunctuation']) {
+            <div>Middle Name cannot include invalid punctuation marks</div>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-container">
+        <input id="surname" formControlName="surname" class="form-control" placeholder=" ">
+        <label for="surname">Surname</label>
+      </div>
+      <div class="error-message">
+        @if (signupForm.get('surname')?.invalid && (signupForm.get('surname')?.dirty || signupForm.get('surname')?.touched)) {
+          @if (signupForm.get('surname')?.errors?.['required']) {
+            <div>Surname is required</div>
+          }
+          @if (signupForm.get('surname')?.errors?.['invalidCharacters']) {
+            <div>Surname cannot include numbers or symbols</div>
+          }
+          @if (signupForm.get('surname')?.errors?.['invalidPunctuation']) {
+            <div>Surname cannot include invalid punctuation marks</div>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-container">
+        <input id="email" type="email" formControlName="email" class="form-control" placeholder=" ">
+        <label for="email">Email</label>
+      </div>
+      <div class="error-message">
+        @if (signupForm.get('email')?.invalid && signupForm.get('email')?.touched) {
+          @if (signupForm.get('email')?.errors?.['required']) {
+            <div>Email is required</div>
+          }
+          @if (signupForm.get('email')?.errors?.['email']) {
+            <div>Valid email is required</div>
+          }
+          @if (signupForm.get('email')?.errors?.['emailExists']) {
+            <div>Email already exists</div>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-container">
+        <input id="birthdate" type="date" formControlName="birthdate" class="form-control" placeholder=" ">
+        <label for="birthdate">Birthdate</label>
+      </div>
+      <div class="error-message">
+        @if (signupForm.get('birthdate')?.invalid && signupForm.get('birthdate')?.touched) {
+          <div>Birthdate is required</div>
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-container">
+        <select id="gender" formControlName="gender" class="form-control">
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <label for="gender">Gender</label>
+      </div>
+      <div class="error-message">
+        @if (signupForm.get('gender')?.invalid && (signupForm.get('gender')?.dirty || signupForm.get('gender')?.touched)) {
+          @if (signupForm.get('gender')?.errors?.['required']) {
+            <div>Gender is required</div>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-container">
+        <input id="university" type="text" formControlName="university" class="form-control" placeholder=" ">
+        <label for="university">University</label>
+      </div>
+      <div class="error-message">
+        @if (signupForm.get('university')?.invalid && signupForm.get('university')?.touched) {
+          @if (signupForm.get('university')?.errors?.['required']) {
+            <div>University is required</div>
+          }
+          @if (signupForm.get('university')?.errors?.['pattern']) {
+            <div>University cannot include numbers or symbols, only characters and spaces</div>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-container">
+        <select id="academic_level" formControlName="academic_level" class="form-control">
+          <option *ngFor="let level of academicLevels" [value]="level.name">{{ level.name }}</option>
+        </select>
+        <label for="academic_level">Academic Level</label>
+      </div>
+      <div class="error-message">
+        @if (signupForm.get('academic_level')?.invalid && signupForm.get('academic_level')?.touched) {
+          <div>Academic Level is required</div>
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-container">
+        <input id="username" type="text" formControlName="username" class="form-control" placeholder=" ">
+        <label for="username">Username</label>
+      </div>
+      <div class="error-message">
+        @if (signupForm.get('username')?.invalid && signupForm.get('username')?.touched) {
+          @if (signupForm.get('username')?.errors?.['required']) {
+            <div>Username is required</div>
+          }
+          @if (signupForm.get('username')?.errors?.['minlength'] || signupForm.get('username')?.errors?.['maxlength']) {
+            <div>Username cannot be less than 8 characters</div>
+          }
+          @if (signupForm.get('username')?.errors?.['pattern']) {
+            <div>Username must be unique</div>
+          }
+          @if (signupForm.get('username')?.errors?.['usernameExists']) {
+            <div>Username already exists</div>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-container">
+        <input id="password" type="password" formControlName="password" class="form-control" placeholder=" ">
+        <label for="password">Password</label>
+      </div>
+      <div class="error-message">
+        @if (signupForm.get('password')?.invalid && signupForm.get('password')?.touched) {
+          @if (signupForm.get('password')?.errors?.['required']) {
+            <div>Password is required</div>
+          }
+          @if (signupForm.get('password')?.errors?.['invalidPassword']) {
+            <div>Password must be unique and cannot be less than 8 characters</div>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-container">
+        <input id="confirm_password" type="password" formControlName="confirm_password" class="form-control" placeholder=" ">
+        <label for="confirm_password">Confirm Password</label>
+      </div>
+      <div class="error-message">
+        @if (signupForm.hasError('passwordMismatch') && signupForm.get('confirm_password')?.touched) {
+          <div>Passwords do not match</div>
+        }
+      </div>
+    </div>
+
+    @if (signupForm.invalid && (signupForm.dirty || signupForm.touched)) {
+      <div>
+        <p>Please fill in all required fields correctly.</p>
+      </div>
+    }
+
+    <button type="submit" [disabled]="signupForm.invalid" class="submit-button">Submit</button>
+
+    <div class="additional-options">
+      <a routerLink="/login">Already have an account? Login</a>
+    </div>
+  </form>
+</div>

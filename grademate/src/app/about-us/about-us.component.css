@@ -1,0 +1,79 @@
+.about-us {
+    text-align: center;
+    padding: 50px 20px;
+    background-image: url('/assets/background2.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white; 
+}
+
+.about-us h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.about-us p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    color:rgb(0, 0, 0);
+}
+
+.team-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.team-member {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    color: #333; 
+    transition: transform 0.3s ease-in-out;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+}
+
+.team-member img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.team-member h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.team-member p {
+    font-size: 0.9em;
+}
+
+.team-member .social-icons {
+    margin-top: 10px;
+}
+
+.team-member .social-icons a {
+    margin: 0 5px;
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.team-member .social-icons a:hover {
+    color: #007bff;
+}
+@media (max-width: 600px) {
+    .about-us {
+        padding: 20px 10px;
+    }
+}

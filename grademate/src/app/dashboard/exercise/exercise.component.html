@@ -1,0 +1,37 @@
+<div class="activity-container">
+  <h2>Exercise Table for Subject: {{ subjectName }}</h2>
+  <table class="activity-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Score</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exercise of exercises">
+        <td>{{ exercise.id }}</td>
+        <td>{{ exercise.score | number:'1.0-0' }}</td>
+        <td>{{ exercise.total | number:'1.0-0' }}</td>
+        <td>
+          <button class="action-button update-button" (click)="updateExercise(exercise)">Update</button>
+          <button class="action-button delete-button" (click)="deleteExercise(exercise.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="add-button" (click)="openAddExerciseModal()">Add Exercise</button>
+
+  <div *ngIf="showAddExerciseModal" class="modal-overlay">
+    <div class="modal-content">
+      <h2>Add Exercise</h2>
+      <input class="modal-input" type="number" [(ngModel)]="newExerciseScore" placeholder="Enter score">
+      <input class="modal-input" type="number" [(ngModel)]="newExerciseTotal" placeholder="Enter total">
+      <div class="modal-buttons">
+        <button class="modal-button save-button" (click)="addExercise()">Save</button>
+        <button class="modal-button cancel-button" (click)="closeAddExerciseModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="activity-container">
+  <h2>Exam Table for Subject: {{ subjectName }}</h2>
+  <table class="activity-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Score</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exam of exams">
+        <td>{{ exam.id }}</td>
+        <td>{{ exam.score | number:'1.0-0' }}</td>
+        <td>{{ exam.total | number:'1.0-0' }}</td>
+        <td>
+          <button class="action-button update-button" (click)="updateExam(exam)">Update</button>
+          <button class="action-button delete-button" (click)="deleteExam(exam.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="add-button" (click)="openAddExamModal()">Add Exam</button>
+
+  <div *ngIf="showAddExamModal" class="modal-overlay">
+    <div class="modal-content">
+      <h2>Add Exam</h2>
+      <input class="modal-input" type="number" [(ngModel)]="newExamScore" placeholder="Enter score">
+      <input class="modal-input" type="number" [(ngModel)]="newExamTotal" placeholder="Enter total">
+      <div class="modal-buttons">
+        <button class="modal-button save-button" (click)="addExam()">Save</button>
+        <button class="modal-button cancel-button" (click)="closeAddExamModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
